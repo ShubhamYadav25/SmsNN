@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 
 # ============================================================
@@ -272,3 +273,75 @@ print("\n========== WORD COUNT BY CLASS ==========")
 word_count_by_class = df.groupby("label")["word_count"].describe()
 
 print(word_count_by_class)
+
+
+# ============================================================
+# CLASS DISTRIBUTION
+# ============================================================
+
+# Count how many messages belong to each class.
+class_counts = df["label"].value_counts()
+
+# Create a bar chart.
+class_counts.plot(kind="bar")
+
+# Give the graph a title.
+plt.title("Ham vs Spam Messages")
+
+# Label the x-axis.
+plt.xlabel("Class")
+
+# Label the y-axis.
+plt.ylabel("Number of Messages")
+
+# Make the x-axis labels easier to read.
+plt.xticks(rotation=0)
+
+# Display the graph.
+plt.show()
+
+df["message_length"].plot(
+    kind="hist",
+    bins=50
+)
+
+plt.title("Message Length Distribution")
+plt.xlabel("Number of Characters")
+plt.ylabel("Number of Messages")
+
+plt.show()
+
+# ============================================================
+# MESSAGE LENGTH: HAM VS SPAM
+# ============================================================
+
+# Select only ham messages.
+ham_lengths = df[df["label"] == "ham"]["message_length"]
+
+# Select only spam messages.
+spam_lengths = df[df["label"] == "spam"]["message_length"]
+
+# Draw the ham distribution.
+ham_lengths.plot(
+    kind="hist",
+    bins=50,
+    alpha=0.6,
+    label="ham"
+)
+
+# Draw the spam distribution on the same graph.
+spam_lengths.plot(
+    kind="hist",
+    bins=50,
+    alpha=0.6,
+    label="spam"
+)
+
+plt.title("Message Length: Ham vs Spam")
+plt.xlabel("Number of Characters")
+plt.ylabel("Number of Messages")
+
+# Display the legend so we know which distribution is which.
+plt.legend()
+
+plt.show()
