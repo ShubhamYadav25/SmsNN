@@ -868,5 +868,51 @@ print(
              ▼
        Transform all
           datasets
+
+The important distinction: fit vs transform
+
+This is a fundamental ML idea.
+
+Fit
+
+Learn something from data.
+
+For us:
+
+FIT on training data:
+
+vocabulary
+IDF
+Transform
+
+Use what we already learned to convert new data.
+
+
+======
+unknown words
+
+Suppose training vocabulary contains:
+
+["free", "money", "win"]
+
+Later we receive:
+
+"bitcoin investment"
+
+Neither word is in the training vocabulary.
+
+What do we do?
+
+Simply ignore them.
+
+The resulting vector becomes:
+
+[0, 0, 0]
+
+This is called an out-of-vocabulary (OOV) situation.
+
+It is another reason vocabulary design matters.
+
+
 """
 
